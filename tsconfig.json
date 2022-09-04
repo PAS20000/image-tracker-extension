@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "skipLibCheck": true,
+        "jsx": "react-jsx",
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration": true,
+        "module": "es6",
+        "target": "es6",
+        "moduleResolution": "node",
+        "isolatedModules": true,
+        "esModuleInterop": true,
+        "noEmit": true,
+        "lib": [
+            "dom",
+            "dom.iterable",
+            "esnext"
+        ],
+    },
+    "include": [
+        "src",
+        "public/src/Js/Ts",
+        "public/src/Js/index.ts"
+    ],
+      "files":[
+        "src/Styles/styled.d.ts"
+    ],
+    "exclude": ["node_modules"],
+}
