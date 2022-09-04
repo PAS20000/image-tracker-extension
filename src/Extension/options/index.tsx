@@ -8,7 +8,6 @@ const Options = () => {
             <div>
                 <h1>Options</h1>
                 <img src="logo-vermelho.png" alt="" />
-                {'a'.toLocaleUpperCase()}
             </div>
        </React.StrictMode>
     )

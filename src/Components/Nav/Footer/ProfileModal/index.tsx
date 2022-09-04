@@ -6,7 +6,7 @@ import { FaGoogle, FaPatreon, FaUser } from 'react-icons/fa'
 import useAuthCTX from '../../../../Contexts/AuthContext/useAuthCTX'
 import Card from './Card'
 import styled from 'styled-components'
-import Api from '../../../../tools/Api'
+import Api from '../../../../Tools/Api'
 import useWindow from '../../../../Hooks/useWindow'
 
 const PatreonLogIn = styled.button`

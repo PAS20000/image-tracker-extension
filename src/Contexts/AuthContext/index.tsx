@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Api from '../../tools/Api'
+import Api from '../../Tools/Api'
 import { PropsCTXdefault } from '../types'
 
 export type PatreonInfo = {

@@ -1,5 +1,5 @@
 import Dexie, { Table } from 'dexie';
-import { IStorage } from '../../Extension/content';
+import { IStorage } from '../../Extension/Content';
 
 export class DexieLib extends Dexie {
   Images !: Table<IStorage>

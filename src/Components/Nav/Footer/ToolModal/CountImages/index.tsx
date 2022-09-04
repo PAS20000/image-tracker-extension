@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { FaImages } from 'react-icons/fa'
-import { IStorage } from '../../../../../../public/src/Js'
+import { IStorage } from '../../../../../Extension/Content'
 import { CountImagesStyle } from './index.styles'
 
 type Props = {

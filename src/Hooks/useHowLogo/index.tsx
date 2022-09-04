@@ -5,16 +5,16 @@ const useHowLogo = () => {
 
     const verifyLogo = () => {
         if (member?.signature === 'free') {
-          return 'img/logo-vermelho.png'
+          return 'logo-vermelho.png'
         }
         if (member?.signature === 'gold') {
-          return 'img/logo-gold.png'
+          return 'logo-gold.png'
         }
         if (member?.signature === 'platinum') {
-          return 'img/logo-verde.png'
+          return 'logo-verde.png'
         }
         if (member?.signature === 'diamond' || member?.signature === 'beta tester') {
-          return 'img/logo-diamound.png'
+          return 'logo-diamound.png'
         }
       }
 

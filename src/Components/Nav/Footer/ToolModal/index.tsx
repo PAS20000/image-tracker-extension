@@ -20,7 +20,7 @@ import { ImSpinner10 } from 'react-icons/im'
 import useFakeJquery from '../../../../Hooks/useFakeJquery'
 import { db } from '../../../../Tools/Server'
 import useLiveStorageCTX from '../../../../Contexts/LiveStorageContext/useLiveStorageCTX'
-import { IStorage } from '../../../../Extension/content'
+import { IStorage } from '../../../../Extension/Content'
 
 const ToolModal = () => {
     const { IsFallBack, setCurrentFilters, Images } = useLiveStorageCTX()

@@ -5,6 +5,8 @@ const Api = (token ?: string) => {
     baseURL : "https://api.imagetracker.org/",
     headers : {
       "Content-Type" : "application/json; charset=utf-8",
+      "Access-Control-Allow-Origin" : '*', 
+      "Access-Control-Allow-Credentials" : 'true',
       "Authorization" : token ?? ""
     },
 })

@@ -1,6 +1,6 @@
 import JSZip from 'jszip';
 import * as React from 'react'
-import { IStorage } from '../../../public/src/Js';
+import { IStorage } from '../../Extension/Content';
 import useFakeJquery from '../useFakeJquery';
 
 const useJSZIP = () => {

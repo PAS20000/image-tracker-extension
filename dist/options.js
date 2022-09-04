@@ -2,9 +2,9 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./src/extension/options/index.tsx":
+/***/ "./src/Extension/Options/index.tsx":
 /*!*****************************************!*\
-  !*** ./src/extension/options/index.tsx ***!
+  !*** ./src/Extension/Options/index.tsx ***!
   \*****************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -208,7 +208,7 @@ root.render(react__WEBPACK_IMPORTED_MODULE_0__.createElement(Options, null));
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js"], function() { return __webpack_require__("./src/extension/options/index.tsx"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js"], function() { return __webpack_require__("./src/Extension/Options/index.tsx"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

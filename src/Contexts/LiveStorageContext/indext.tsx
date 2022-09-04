@@ -1,6 +1,6 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import * as React from 'react'
-import { IStorage } from '../../Extension/content'
+import { IStorage } from '../../Extension/Content'
 import { db } from '../../Tools/Server'
 import useAuthCTX from '../AuthContext/useAuthCTX'
 import { PropsCTXdefault, SetState } from '../types'

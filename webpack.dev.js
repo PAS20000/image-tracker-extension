@@ -4,7 +4,7 @@ const HtmlPlugin = require("html-webpack-plugin");
 
 const InsertHtmlPlugin = (chunks) => {
   return chunks.map(chunk => new HtmlPlugin({
-      title : `Image Tracker | ${chunk.charAt(0).toUpperCase() + str.slice(1)}`,
+      title : `Image Tracker | ${chunk.charAt(0).toUpperCase() + chunk.slice(1)}`,
       filename : `${chunk}.html`,
       chunks : [chunk]
   }))
@@ -13,8 +13,10 @@ const InsertHtmlPlugin = (chunks) => {
 module.exports = {
   mode : 'development',
   entry: {
-    popup : path.resolve('./src/extension/popup/index.tsx'),
-    options : path.resolve('./src/extension/options/index.tsx'),
+    popup : path.resolve('./src/Extension/Popup/index.tsx'),
+    options : path.resolve('./src/Extension/Options/index.tsx'),
+    background : path.resolve('./src/Extension/Background/index.ts'),
+    content : path.resolve('./src/Extension/Content/index.ts')
   },
   devtool : 'cheap-module-source-map',
   module : {
@@ -35,7 +37,7 @@ module.exports = {
     new CopyPlugin({
       patterns : [
         { 
-          from : path.resolve('./src/static'), 
+          from : path.resolve('./src/Static'), 
           to : path.resolve('dist') 
         }
       ],

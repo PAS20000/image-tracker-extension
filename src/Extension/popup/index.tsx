@@ -1,16 +1,7 @@
-import * as React from 'react'
+import React from 'react'
 import * as ReactDOM from 'react-dom/client'
+import App from '../../Pages'
 
-const Popup = () => {
-
-    return (
-       <React.StrictMode>
-            <div>
-                <h1>Popup</h1>
-            </div>
-       </React.StrictMode>
-    )
-}
 
 const Root = document.createElement('div')
 Root.id = 'root'
@@ -19,4 +10,4 @@ Portal.id = 'portal'
 document.body.append(Portal)
 document.body.append(Root)
 const root = ReactDOM.createRoot(Root)
-root.render(<Popup />)
+root.render(<App />)

@@ -1,3 +1,5 @@
+import Api from "../../Tools/Api"
+
 chrome.runtime.onInstalled.addListener(() => {
     console.info('[ Image Tracker Install ]')
 })
@@ -47,20 +49,14 @@ chrome.runtime.onMessage.addListener( async (message : { Href : string }) => {
         const googleToken = SearchUrl[2]
         const patreonToken = SearchUrl[4] ?? ''
         if (TapLink === 'image-tracker.taplink.ws') {
-            const res = await fetch('https://api.imagetracker.org/member/auth', {
-                method : 'POST',
-                headers : {
-                    'Content-Type' : 'application/json',
-                    'Access-Control-Allow-Origin' : '*', 
-                    'Access-Control-Allow-Credentials' : 'true',
-                    'Authorization' : googleToken
-                },
-                body : JSON.stringify({ patreonToken }),
-                mode : 'cors'
+            const res = await Api(googleToken).post('/member/auth', {
+                data : {
+                    patreonToken
+                }
             }).catch((e) => {
                 error(`res : ${e}`)
             })
-            const { token } = await res?.json()
+            const { token } = await res?.data as any
             await chrome.storage.local.remove(['token']).catch((e) => {
                 error(`chrome storage local clear error ${e}`)
             })
