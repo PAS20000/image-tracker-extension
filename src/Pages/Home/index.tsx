@@ -18,9 +18,11 @@ const Home = () => {
     const HowLogo = useHowLogo()
     const Goto = useNavigate()
 
-    if (!isAuth) {
-      Goto('/')
-    }
+    React.useEffect(() => {
+      if (!isAuth) {
+          Goto('/')
+      }
+    }, [isAuth])
 
     React.useEffect(() => {
       if (member?.signature === 'free' && !IsFallBack.Storage) {

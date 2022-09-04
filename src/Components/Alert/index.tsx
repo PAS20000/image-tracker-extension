@@ -1,3 +1,4 @@
+import * as React from 'react'
 import { RiErrorWarningFill } from "react-icons/ri"
 import { Error } from "./index.styles"
 

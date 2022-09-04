@@ -53,10 +53,9 @@ chrome.runtime.onMessage.addListener( async (message : { Href : string }) => {
                 data : {
                     patreonToken
                 }
-            }).catch((e) => {
-                error(`res : ${e}`)
             })
-            const { token } = await res?.data as any
+            const { token } = res.data
+
             await chrome.storage.local.remove(['token']).catch((e) => {
                 error(`chrome storage local clear error ${e}`)
             })

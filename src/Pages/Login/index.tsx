@@ -12,10 +12,6 @@ const Login = () => {
     const { isAuth } = useAuthCTX()
     const Goto = useNavigate()
     const { WindowConfig } = useWindow()
-    
-    if (isAuth) {
-        Goto('/home')
-    }
 
     const Submit = async (e : React.FormEvent) => {
         e.preventDefault()
@@ -23,6 +19,12 @@ const Login = () => {
         const Href = data.GoogleOauth.href
         window.open(Href, 'Oauth', WindowConfig)
     }
+
+    React.useEffect(() => {
+        if (isAuth) {
+            Goto('/home')
+        }
+    }, [isAuth])
     
     return (
         <>{!isAuth &&

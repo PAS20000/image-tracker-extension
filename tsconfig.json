@@ -6,6 +6,10 @@
         "moduleResolution": "node",
         "esModuleInterop": true,
         "downlevelIteration": true,
+        "lib": [
+            "es2021",
+            "dom"
+        ]
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"],

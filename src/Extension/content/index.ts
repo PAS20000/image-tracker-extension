@@ -149,10 +149,7 @@ const Data = () => {
 
 const GetImages = async () => {
     const Images = await Data()
-    .catch((e) => {
-        console.error(`Images error : ${e}`)
-    })
-    if (Images?.length) {
+    if (Images.length) {
         chrome.storage.local.get(['Storage'], async ({ Storage }) => {
             if (Storage) {
                 const newStorage = Storage

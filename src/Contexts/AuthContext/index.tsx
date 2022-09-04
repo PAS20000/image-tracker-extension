@@ -69,6 +69,7 @@ const AuthProvider = ({
                                 setMember(undefined)
                                 chrome.runtime.reload()
                             })
+                        return null
                     })
                 setMember(res?.data.member)
             }

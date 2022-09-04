@@ -80,6 +80,7 @@ const LiveStorageProvider = ({
     const NewStorage = async (image : IStorage) => {
         const res = await fetch(image.base64 as string).catch((e) => {
             console.error(`Error ${e}`)
+            return null
         })
         const Blob = await res?.blob()
         return {

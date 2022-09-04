@@ -37,7 +37,7 @@ const Footer = () => {
                 <Button title='Shop' onClick={() => setIsOpen({ ...isOpen, shop : true })} color={color.red}>
                    <IoMdCart />
                 </Button>
-                <Button title='FullScreen' color={color.cyan} onClick={() => window.open('/index.html')}>
+                <Button title='FullScreen' color={color.cyan} onClick={() => window.open('/popup.html')}>
                     <MdZoomOutMap />
                 </Button>
                 <Button title='Tools' onClick={() => setIsOpen({ ...isOpen, tools : true })} color={color.green}>

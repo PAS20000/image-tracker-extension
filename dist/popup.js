@@ -42,17 +42,20 @@ const Error = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div `
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
-/* harmony import */ var _index_styles__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.styles */ "./src/Components/Alert/index.styles.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_icons_ri__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-icons/ri */ "./node_modules/react-icons/ri/index.esm.js");
+/* harmony import */ var _index_styles__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./index.styles */ "./src/Components/Alert/index.styles.ts");
+
 
 
 const Alert = ({ title, describe }) => {
-    return (React.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_0__.Error, null,
-        React.createElement("h2", null,
-            React.createElement(react_icons_ri__WEBPACK_IMPORTED_MODULE_1__.RiErrorWarningFill, null),
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_1__.Error, null,
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", null,
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_ri__WEBPACK_IMPORTED_MODULE_2__.RiErrorWarningFill, null),
             " ",
             title),
-        React.createElement("p", null, describe)));
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, describe)));
 };
 /* harmony default export */ __webpack_exports__["default"] = (Alert);
 
@@ -1762,7 +1765,7 @@ const Footer = () => {
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaArrowLeft, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Shop', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { shop: true })), color: color.red },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io__WEBPACK_IMPORTED_MODULE_12__.IoMdCart, null)),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'FullScreen', color: color.cyan, onClick: () => window.open('/index.html') },
+            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'FullScreen', color: color.cyan, onClick: () => window.open('/popup.html') },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_md__WEBPACK_IMPORTED_MODULE_13__.MdZoomOutMap, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Tools', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { tools: true })), color: color.green },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaTools, null)),
@@ -1988,6 +1991,7 @@ const AuthProvider = ({ children }) => {
                         setMember(undefined);
                         chrome.runtime.reload();
                     });
+                    return null;
                 }));
                 setMember(res === null || res === void 0 ? void 0 : res.data.member);
             }
@@ -2172,6 +2176,7 @@ const LiveStorageProvider = ({ children }) => {
     const NewStorage = (image) => __awaiter(void 0, void 0, void 0, function* () {
         const res = yield fetch(image.base64).catch((e) => {
             console.error(`Error ${e}`);
+            return null;
         });
         const Blob = yield (res === null || res === void 0 ? void 0 : res.blob());
         return Object.assign(Object.assign({}, image), { ['base64']: null, ['blob']: Blob });
@@ -2473,6 +2478,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const Render = () => {
+    return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, null,
+        react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Pages__WEBPACK_IMPORTED_MODULE_2__["default"], null)));
+};
 const Root = document.createElement('div');
 Root.id = 'root';
 const Portal = document.createElement('div');
@@ -2480,7 +2489,7 @@ Portal.id = 'portal';
 document.body.append(Portal);
 document.body.append(Root);
 const root = react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot(Root);
-root.render(react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_Pages__WEBPACK_IMPORTED_MODULE_2__["default"], null));
+root.render(react__WEBPACK_IMPORTED_MODULE_0__.createElement(Render, null));
 
 
 /***/ }),
@@ -2527,7 +2536,7 @@ const useHowLogo = () => {
             return 'logo-verde.png';
         }
         if ((member === null || member === void 0 ? void 0 : member.signature) === 'diamond' || (member === null || member === void 0 ? void 0 : member.signature) === 'beta tester') {
-            return 'logo-diamound.png';
+            return 'logo-diamond.png';
         }
     };
     return verifyLogo;
@@ -2673,9 +2682,11 @@ const Home = () => {
     const { member, isAuth } = (0,_Contexts_AuthContext_useAuthCTX__WEBPACK_IMPORTED_MODULE_7__["default"])();
     const HowLogo = (0,_Hooks_useHowLogo__WEBPACK_IMPORTED_MODULE_10__["default"])();
     const Goto = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.useNavigate)();
-    if (!isAuth) {
-        Goto('/');
-    }
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        if (!isAuth) {
+            Goto('/');
+        }
+    }, [isAuth]);
     react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
         if ((member === null || member === void 0 ? void 0 : member.signature) === 'free' && !IsFallBack.Storage) {
             setIsOpen(current => {
@@ -2741,15 +2752,17 @@ const Login = () => {
     const { isAuth } = (0,_Contexts_AuthContext_useAuthCTX__WEBPACK_IMPORTED_MODULE_4__["default"])();
     const Goto = (0,react_router_dom__WEBPACK_IMPORTED_MODULE_7__.useNavigate)();
     const { WindowConfig } = (0,_Hooks_useWindow__WEBPACK_IMPORTED_MODULE_5__["default"])();
-    if (isAuth) {
-        Goto('/home');
-    }
     const Submit = (e) => __awaiter(void 0, void 0, void 0, function* () {
         e.preventDefault();
         const { data } = yield (0,_Tools_Api__WEBPACK_IMPORTED_MODULE_6__["default"])().get('/oauth/google');
         const Href = data.GoogleOauth.href;
         window.open(Href, 'Oauth', WindowConfig);
     });
+    react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
+        if (isAuth) {
+            Goto('/home');
+        }
+    }, [isAuth]);
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !isAuth &&
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Form__WEBPACK_IMPORTED_MODULE_1__["default"], { onSubmit: (e) => Submit(e) },
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Components_Layout_Flex__WEBPACK_IMPORTED_MODULE_2__["default"], { direction: 'column' },

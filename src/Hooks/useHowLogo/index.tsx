@@ -14,7 +14,7 @@ const useHowLogo = () => {
           return 'logo-verde.png'
         }
         if (member?.signature === 'diamond' || member?.signature === 'beta tester') {
-          return 'logo-diamound.png'
+          return 'logo-diamond.png'
         }
       }
 
