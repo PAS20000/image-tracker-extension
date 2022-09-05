@@ -23,7 +23,7 @@ const ShopModal = () => {
             </TitleModal>
             <Card>
                 <div>
-                    <img src='img/logo-gold.png' alt='logo-gold' />
+                    <img src='logo-gold.png' alt='logo-gold' />
                 </div> 
                 <Sign bg={color.yellow} onClick={() => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member')}>
                     Golden Member <br />
@@ -35,7 +35,7 @@ const ShopModal = () => {
             </Card>
             <Card>
                 <div>
-                    <img src='img/logo-verde.png' alt='logo-platinum' />
+                    <img src='logo-verde.png' alt='logo-platinum' />
                 </div>
                 <Sign bg={color.green} onClick={() => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member')}>
                     Platinum Member <br />
@@ -47,7 +47,7 @@ const ShopModal = () => {
             </Card>
             <Card>
                 <div>
-                    <img src='img/logo-diamound.png' alt='logo-diamound' className='Diamound'/>
+                    <img src='logo-diamond.png' alt='logo-diamound' className='Diamound'/>
                 </div>
                 <Sign bg={color.cyan} onClick={() => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member')}>
                     Diamond Member <br />

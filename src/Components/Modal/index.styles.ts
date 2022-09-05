@@ -13,10 +13,10 @@ const BackGround = styled.div`
 const Container = styled.div`
     @keyframes FadeIn {
         from {
-           transform: translate(65vh, 100vh);
+           transform: translate(13vh, 100vh);
         }
         to {
-            transform: translate(65vh, 0vh);
+            transform: translate(13vh, 0vh);
         }
     }
     animation: FadeIn 0.5s ease-out;
@@ -24,22 +24,22 @@ const Container = styled.div`
     position:fixed;
     width:80vh;
     height:100vh;
-    transform: translate(65vh, 0vh);
+    transform: translate(13vh, 0vh);
     box-shadow:${props => props.theme.utils.boxShadow};
     border-radius:${props => props.theme.utils.borderRadius};
     z-index: 99999;
 
-    @media(max-width: ${BreakPoints.width[0]}) {
+    @media(min-width: ${BreakPoints.width[1]}) {
         @keyframes FadeIn {
             from {
-                transform: translate(13vh, 100vh);
+                transform: translate(65vh, 100vh);
             }
             to {
-                transform: translate(13vh, 0vh);
+                transform: translate(65vh, 0vh);
             }
         }
        animation: FadeIn 0.5s ease-out;
-       transform: translate(13vh, 0vh);
+       transform: translate(65vh, 0vh);
        width:80vh;
        height:100vh;
     }

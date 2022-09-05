@@ -22,7 +22,7 @@ const Login = () => {
 
     React.useEffect(() => {
         if (isAuth) {
-            Goto('/home')
+            Goto('/popup.html')
         }
     }, [isAuth])
     

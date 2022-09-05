@@ -783,10 +783,10 @@ const BackGround = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div
 const Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div `
     @keyframes FadeIn {
         from {
-           transform: translate(65vh, 100vh);
+           transform: translate(13vh, 100vh);
         }
         to {
-            transform: translate(65vh, 0vh);
+            transform: translate(13vh, 0vh);
         }
     }
     animation: FadeIn 0.5s ease-out;
@@ -794,22 +794,22 @@ const Container = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div 
     position:fixed;
     width:80vh;
     height:100vh;
-    transform: translate(65vh, 0vh);
+    transform: translate(13vh, 0vh);
     box-shadow:${props => props.theme.utils.boxShadow};
     border-radius:${props => props.theme.utils.borderRadius};
     z-index: 99999;
 
-    @media(max-width: ${_Styles_BreakPoints_index__WEBPACK_IMPORTED_MODULE_0__["default"].width[0]}) {
+    @media(min-width: ${_Styles_BreakPoints_index__WEBPACK_IMPORTED_MODULE_0__["default"].width[1]}) {
         @keyframes FadeIn {
             from {
-                transform: translate(13vh, 100vh);
+                transform: translate(65vh, 100vh);
             }
             to {
-                transform: translate(13vh, 0vh);
+                transform: translate(65vh, 0vh);
             }
         }
        animation: FadeIn 0.5s ease-out;
-       transform: translate(13vh, 0vh);
+       transform: translate(65vh, 0vh);
        width:80vh;
        height:100vh;
     }
@@ -1315,7 +1315,7 @@ const ShopModal = () => {
             " Shopping"),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Card, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'img/logo-gold.png', alt: 'logo-gold' })),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'logo-gold.png', alt: 'logo-gold' })),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Sign, { bg: color.yellow, onClick: () => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member') },
                 "Golden Member ",
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null),
@@ -1323,7 +1323,7 @@ const ShopModal = () => {
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Label, null, "$ 7.99"))),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Card, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'img/logo-verde.png', alt: 'logo-platinum' })),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'logo-verde.png', alt: 'logo-platinum' })),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Sign, { bg: color.green, onClick: () => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member') },
                 "Platinum Member ",
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null),
@@ -1331,7 +1331,7 @@ const ShopModal = () => {
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Label, null, "$ 9.99"))),
         react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Card, null,
             react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null,
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'img/logo-diamound.png', alt: 'logo-diamound', className: 'Diamound' })),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", { src: 'logo-diamond.png', alt: 'logo-diamound', className: 'Diamound' })),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_index_styles__WEBPACK_IMPORTED_MODULE_4__.Sign, { bg: color.cyan, onClick: () => openWindow('https://www.patreon.com/join/Image_Tracker/checkout?rid=9007359', 'Become a Member') },
                 "Diamond Member ",
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null),
@@ -1726,7 +1726,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 /* harmony import */ var react_icons_io__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-icons/io */ "./node_modules/react-icons/io/index.esm.js");
-/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-icons/md */ "./node_modules/react-icons/md/index.esm.js");
 /* harmony import */ var _Contexts_PortalContext_usePortalCTX__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Contexts/PortalContext/usePortalCTX */ "./src/Contexts/PortalContext/usePortalCTX/index.tsx");
 /* harmony import */ var _index_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.styles */ "./src/Components/Nav/Footer/index.styles.ts");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
@@ -1737,7 +1736,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShopModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ShopModal */ "./src/Components/Nav/Footer/ShopModal/index.tsx");
 /* harmony import */ var _ProfileModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ProfileModal */ "./src/Components/Nav/Footer/ProfileModal/index.tsx");
 /* harmony import */ var _Contexts_LiveStorageContext_useLiveStorageCTX__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../Contexts/LiveStorageContext/useLiveStorageCTX */ "./src/Contexts/LiveStorageContext/useLiveStorageCTX/index.tsx");
-
 
 
 
@@ -1768,8 +1766,6 @@ const Footer = () => {
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaArrowLeft, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Shop', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { shop: true })), color: color.red },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io__WEBPACK_IMPORTED_MODULE_12__.IoMdCart, null)),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'FullScreen', color: color.cyan, onClick: () => window.open('/popup.html') },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_md__WEBPACK_IMPORTED_MODULE_13__.MdZoomOutMap, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Tools', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { tools: true })), color: color.green },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaTools, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Profile', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { profile: true })), color: color.green },
@@ -2724,7 +2720,7 @@ const Login = () => {
     });
     react__WEBPACK_IMPORTED_MODULE_0__.useEffect(() => {
         if (isAuth) {
-            Goto('/home');
+            Goto('/popup.html');
         }
     }, [isAuth]);
     return (react__WEBPACK_IMPORTED_MODULE_0__.createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, !isAuth &&
@@ -2769,7 +2765,7 @@ const App = () => {
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Styles_Global_index_styles__WEBPACK_IMPORTED_MODULE_2__["default"], null),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Routes, null,
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, { path: '/', element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_4__["default"], null) }),
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, { path: '/home', element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Home__WEBPACK_IMPORTED_MODULE_3__["default"], null) }),
+                react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, { path: '/popup.html', element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Home__WEBPACK_IMPORTED_MODULE_3__["default"], null) }),
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_6__.Route, { path: '*', element: react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Login__WEBPACK_IMPORTED_MODULE_4__["default"], null) })))));
 };
 /* harmony default export */ __webpack_exports__["default"] = (App);

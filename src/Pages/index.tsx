@@ -12,7 +12,7 @@ const App = () => {
                 <GlobalStyle />
                     <Routes>
                         <Route path='/' element={ <Login /> } />
-                        <Route path='/home' element={ <Home /> } />
+                        <Route path='/popup.html' element={ <Home /> } />
                         <Route path='*' element={ <Login /> } />
                     </Routes>
             </GlobalProvider>
