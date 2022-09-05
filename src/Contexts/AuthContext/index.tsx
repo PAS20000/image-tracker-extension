@@ -56,12 +56,12 @@ const AuthProvider = ({
    const [member, setMember] = React.useState<IMember>()
    const isAuth = !!member?.Google_id
    const Auth = () => {
-        chrome.storage.local.get(null, async ({ token }) => {
+        chrome.storage.sync.get(null, async ({ token }) => {
             if (!!token) {
                 const res = await Api(token).post('/member/jwt')
                     .catch(async (e) => {
                         console.error(e)
-                        await chrome.storage.local.remove(['token'])
+                        await chrome.storage.sync.remove(['token'])
                             .catch((err) => {
                                 console.error(err)
                             })

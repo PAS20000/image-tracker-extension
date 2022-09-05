@@ -6,7 +6,7 @@ const Container = styled.div`
 `
 
 const Text = styled.h1`
-    padding: 5px;
+    padding: 10px;
     color:${props => props.theme.color.icon};
     font-family: 'Poppins', sans-serif;
     font-weight: bold;

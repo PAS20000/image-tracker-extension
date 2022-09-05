@@ -129,7 +129,7 @@ const Data = () => {
                         return GetExtension(value)
                     }
                 })
-                ?.forEach(src => {
+                .forEach(src => {
                     const createImage = document.createElement('img')
                     createImage.src = src ?? ''
                     createImage.alt = alt
@@ -150,24 +150,11 @@ const Data = () => {
 const GetImages = async () => {
     const Images = await Data()
     if (Images.length) {
-        chrome.storage.local.get(['Storage'], async ({ Storage }) => {
-            if (Storage) {
-                const newStorage = Storage
-                await chrome.storage.local.set({ Storage : Images.concat(newStorage) })
-                    .catch((e) => {
-                        console.error(`
-                            chrome.storage.local.set Storage error : ${e}
-                        `)
-                    })
-            } else {
-                await chrome.storage.local.set({ Storage : Images })
-                    .catch((e) => {
-                        console.error(`
-                            chrome.storage.local.set Storage error : ${e}
-                        `)
-                    })
-            }
-        })
+       for (let i in Images) {
+            await chrome.runtime.sendMessage({
+                Image : Images[i]
+            })
+       }
     }
 }
 

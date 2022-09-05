@@ -4,7 +4,10 @@
   "name":"Image Tracker",
   "permissions": [
     "storage",
-    "unlimitedStorage"
+    "unlimitedStorage",
+    "tabs",
+    "scripting",
+    "accessibilityFeatures.read"
   ],
   "file_system_provider_capabilities": {
     "configurable": true,
@@ -26,7 +29,8 @@
     "128": "logo-vermelho.png"
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "background.js",
+    "type": "module"
   },
   "host_permissions": [
     "<all_urls>"

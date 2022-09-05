@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Error = styled.div`
     color : ${props => props.theme.color.red};
     padding: 20px;
-    margin: 20px;
+    margin: 15px;
     background: ${props => props.theme.color.bg[0]};
     box-shadow: ${props => props.theme.utils.boxShadow};
     background-image: linear-gradient(70deg,${props => props.theme.color.bg[0]}, ${props => props.theme.color.bg[1]});
@@ -14,6 +14,9 @@ const Error = styled.div`
     position: absolute;
     svg {
         transform: translate(2px, 2px);
+    }
+    p {
+        margin: 10px 0px;
     }
 `
 

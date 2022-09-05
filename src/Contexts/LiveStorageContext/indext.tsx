@@ -58,12 +58,6 @@ const LiveStorageProvider = ({
         Delete : false,
     })
 
-    const isPromo = () => {
-        if (!member?.signature) return
-        const IsPromo = member.signature.split(' ')[0] === 'promo'
-        return IsPromo
-    }
-
     const Loaded = () => {
         setIsFallBack(current => {
             return {
@@ -72,53 +66,11 @@ const LiveStorageProvider = ({
             }
         })
     }
-
-    const isHtml = (base64 : string) => {
-        return base64?.replace(';', '/').split('/').includes('html')
-    }
     
-    const NewStorage = async (image : IStorage) => {
-        const res = await fetch(image.base64 as string).catch((e) => {
-            console.error(`Error ${e}`)
-            return null
-        })
-        const Blob = await res?.blob()
-        return {
-            ...image,
-            ['base64'] : null,
-            ['blob'] : Blob
-        }
-    }
-
-    const Storage = () => {
-        chrome.storage.local.get(['Storage'], async ({ Storage }) => {
-            if (!!Storage) {
-                const Images = Promise.all(
-                    Storage.map(async (image : IStorage) => {
-                        const VerifyIsHtml = isHtml(image.base64 as string)
-                        if (!VerifyIsHtml) {
-                            return await NewStorage(image)
-                        } else {
-                            return []
-                        }
-                   })
-                )
-                const newImages = await Images
-                console.log(newImages)
-                if (newImages.length) {
-                    await db.Images.bulkAdd(newImages)
-                        .catch((e) => {
-                            console.error(`Error ${e}`)
-                        })
-                        .finally(async () => {
-                            Loaded()
-                            await chrome.storage.local.remove(['Storage'])
-                        })
-                }
-            } else {
-                Loaded()
-            }
-        })
+    const isPromo = () => {
+        if (!member?.signature) return
+        const IsPromo = member.signature.split(' ')[0] === 'promo'
+        return IsPromo
     }
 
     const PaginationImages = useLiveQuery(async () => {
@@ -208,10 +160,6 @@ const LiveStorageProvider = ({
         return AllImages()
     }, [member, CurrentFilters])
 
-    React.useEffect(() => {
-        Storage()
-    }, [])
-
     const right = () => {
         if (CarouselRef.current !== null && Images) {
             const Carousel = CarouselRef.current
@@ -249,6 +197,12 @@ const LiveStorageProvider = ({
             }
         }
     }
+
+    React.useEffect(() => {
+        if (Images) {
+            Loaded()
+        }
+    }, [Images])
 
    return(
         <LiveStorageContext.Provider value={{

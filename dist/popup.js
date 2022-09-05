@@ -17,7 +17,7 @@ __webpack_require__.r(__webpack_exports__);
 const Error = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div `
     color : ${props => props.theme.color.red};
     padding: 20px;
-    margin: 20px;
+    margin: 15px;
     background: ${props => props.theme.color.bg[0]};
     box-shadow: ${props => props.theme.utils.boxShadow};
     background-image: linear-gradient(70deg,${props => props.theme.color.bg[0]}, ${props => props.theme.color.bg[1]});
@@ -28,6 +28,9 @@ const Error = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div `
     position: absolute;
     svg {
         transform: translate(2px, 2px);
+    }
+    p {
+        margin: 10px 0px;
     }
 `;
 
@@ -1910,7 +1913,7 @@ const Container = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].div 
     justify-content: center;
 `;
 const Text = styled_components__WEBPACK_IMPORTED_MODULE_0__["default"].h1 `
-    padding: 5px;
+    padding: 10px;
     color:${props => props.theme.color.icon};
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
@@ -1978,12 +1981,12 @@ const AuthProvider = ({ children }) => {
     const [member, setMember] = react__WEBPACK_IMPORTED_MODULE_0__.useState();
     const isAuth = !!(member === null || member === void 0 ? void 0 : member.Google_id);
     const Auth = () => {
-        chrome.storage.local.get(null, ({ token }) => __awaiter(void 0, void 0, void 0, function* () {
+        chrome.storage.sync.get(null, ({ token }) => __awaiter(void 0, void 0, void 0, function* () {
             if (!!token) {
                 const res = yield (0,_Tools_Api__WEBPACK_IMPORTED_MODULE_1__["default"])(token).post('/member/jwt')
                     .catch((e) => __awaiter(void 0, void 0, void 0, function* () {
                     console.error(e);
-                    yield chrome.storage.local.remove(['token'])
+                    yield chrome.storage.sync.remove(['token'])
                         .catch((err) => {
                         console.error(err);
                     })
@@ -2159,57 +2162,16 @@ const LiveStorageProvider = ({ children }) => {
         Storage: true,
         Delete: false,
     });
-    const isPromo = () => {
-        if (!(member === null || member === void 0 ? void 0 : member.signature))
-            return;
-        const IsPromo = member.signature.split(' ')[0] === 'promo';
-        return IsPromo;
-    };
     const Loaded = () => {
         setIsFallBack(current => {
             return Object.assign(Object.assign({}, current), { Storage: false });
         });
     };
-    const isHtml = (base64) => {
-        return base64 === null || base64 === void 0 ? void 0 : base64.replace(';', '/').split('/').includes('html');
-    };
-    const NewStorage = (image) => __awaiter(void 0, void 0, void 0, function* () {
-        const res = yield fetch(image.base64).catch((e) => {
-            console.error(`Error ${e}`);
-            return null;
-        });
-        const Blob = yield (res === null || res === void 0 ? void 0 : res.blob());
-        return Object.assign(Object.assign({}, image), { ['base64']: null, ['blob']: Blob });
-    });
-    const Storage = () => {
-        chrome.storage.local.get(['Storage'], ({ Storage }) => __awaiter(void 0, void 0, void 0, function* () {
-            if (!!Storage) {
-                const Images = Promise.all(Storage.map((image) => __awaiter(void 0, void 0, void 0, function* () {
-                    const VerifyIsHtml = isHtml(image.base64);
-                    if (!VerifyIsHtml) {
-                        return yield NewStorage(image);
-                    }
-                    else {
-                        return [];
-                    }
-                })));
-                const newImages = yield Images;
-                console.log(newImages);
-                if (newImages.length) {
-                    yield _Tools_Server__WEBPACK_IMPORTED_MODULE_2__.db.Images.bulkAdd(newImages)
-                        .catch((e) => {
-                        console.error(`Error ${e}`);
-                    })
-                        .finally(() => __awaiter(void 0, void 0, void 0, function* () {
-                        Loaded();
-                        yield chrome.storage.local.remove(['Storage']);
-                    }));
-                }
-            }
-            else {
-                Loaded();
-            }
-        }));
+    const isPromo = () => {
+        if (!(member === null || member === void 0 ? void 0 : member.signature))
+            return;
+        const IsPromo = member.signature.split(' ')[0] === 'promo';
+        return IsPromo;
     };
     const PaginationImages = (0,dexie_react_hooks__WEBPACK_IMPORTED_MODULE_0__.useLiveQuery)(() => __awaiter(void 0, void 0, void 0, function* () {
         if (CurrentFilters.length) {
@@ -2282,9 +2244,6 @@ const LiveStorageProvider = ({ children }) => {
         }));
         return AllImages();
     }), [member, CurrentFilters]);
-    react__WEBPACK_IMPORTED_MODULE_1__.useEffect(() => {
-        Storage();
-    }, []);
     const right = () => {
         if (CarouselRef.current !== null && Images) {
             const Carousel = CarouselRef.current;
@@ -2317,6 +2276,11 @@ const LiveStorageProvider = ({ children }) => {
             }
         }
     };
+    react__WEBPACK_IMPORTED_MODULE_1__.useEffect(() => {
+        if (Images) {
+            Loaded();
+        }
+    }, [Images]);
     return (react__WEBPACK_IMPORTED_MODULE_1__.createElement(LiveStorageContext.Provider, { value: {
             Images: Images !== null && Images !== void 0 ? Images : [],
             PaginationImages: PaginationImages !== null && PaginationImages !== void 0 ? PaginationImages : [],
@@ -3166,7 +3130,7 @@ const db = new DexieLib();
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js","vendors-node_modules_axios_index_js","vendors-node_modules_dexie-react-hooks_dist_dexie-react-hooks_js-node_modules_jszip_dist_jszi-c882c7"], function() { return __webpack_require__("./src/Extension/Popup/index.tsx"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_react-dom_client_js","vendors-node_modules_axios_index_js-node_modules_dexie-react-hooks_dist_dexie-react-hooks_js--acdf15"], function() { return __webpack_require__("./src/Extension/Popup/index.tsx"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()

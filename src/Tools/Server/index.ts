@@ -11,4 +11,5 @@ export class DexieLib extends Dexie {
     })
   }
 }
+
 export const db = new DexieLib()
