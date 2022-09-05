@@ -7,7 +7,7 @@
     "unlimitedStorage",
     "tabs",
     "scripting",
-    "accessibilityFeatures.read"
+    "activeTab"
   ],
   "file_system_provider_capabilities": {
     "configurable": true,
@@ -18,7 +18,6 @@
   "description":"Download images from instagram or from any other site" ,
   "author":"Pedro Augusto Schroeder",
   "action" : {
-      "default_popup": "popup.html",
       "default_title": "Image Tracker",
       "default_icon": "logo-vermelho.png"
   },

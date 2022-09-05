@@ -106,6 +106,17 @@ const CreateStorage = async (image ?: IStorage) => {
 
 chrome.runtime.onInstalled.addListener(async () => {
     console.info('[ Image Tracker Install ]')
+    
+})
+
+chrome.action.onClicked.addListener(async () => { 
+    await chrome.windows.create({
+        url : chrome.runtime.getURL('/popup.html'),
+        width: 700,
+        height: 700,
+        type : 'popup',
+        left: 1000,
+    })
 })
 
 chrome.runtime.onMessage.addListener( async (message : { Href : string, Image : IStorage }) => {

@@ -1726,7 +1726,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_icons_fa__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-icons/fa */ "./node_modules/react-icons/fa/index.esm.js");
 /* harmony import */ var react_icons_io__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-icons/io */ "./node_modules/react-icons/io/index.esm.js");
-/* harmony import */ var react_icons_md__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! react-icons/md */ "./node_modules/react-icons/md/index.esm.js");
 /* harmony import */ var _Contexts_PortalContext_usePortalCTX__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../Contexts/PortalContext/usePortalCTX */ "./src/Contexts/PortalContext/usePortalCTX/index.tsx");
 /* harmony import */ var _index_styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./index.styles */ "./src/Components/Nav/Footer/index.styles.ts");
 /* harmony import */ var styled_components__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! styled-components */ "./node_modules/styled-components/dist/styled-components.browser.esm.js");
@@ -1737,7 +1736,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ShopModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./ShopModal */ "./src/Components/Nav/Footer/ShopModal/index.tsx");
 /* harmony import */ var _ProfileModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./ProfileModal */ "./src/Components/Nav/Footer/ProfileModal/index.tsx");
 /* harmony import */ var _Contexts_LiveStorageContext_useLiveStorageCTX__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../Contexts/LiveStorageContext/useLiveStorageCTX */ "./src/Contexts/LiveStorageContext/useLiveStorageCTX/index.tsx");
-
 
 
 
@@ -1768,8 +1766,6 @@ const Footer = () => {
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaArrowLeft, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Shop', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { shop: true })), color: color.red },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_io__WEBPACK_IMPORTED_MODULE_12__.IoMdCart, null)),
-            react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'FullScreen', color: color.cyan, onClick: () => window.open('/popup.html') },
-                react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_md__WEBPACK_IMPORTED_MODULE_13__.MdZoomOutMap, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Tools', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { tools: true })), color: color.green },
                 react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_icons_fa__WEBPACK_IMPORTED_MODULE_11__.FaTools, null)),
             react__WEBPACK_IMPORTED_MODULE_0__.createElement(_Button__WEBPACK_IMPORTED_MODULE_3__["default"], { title: 'Profile', onClick: () => setIsOpen(Object.assign(Object.assign({}, isOpen), { profile: true })), color: color.green },
