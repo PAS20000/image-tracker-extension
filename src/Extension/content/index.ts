@@ -47,9 +47,7 @@ const Attempt = {
     async 1(image : HTMLImageElement) {
         const res = await fetch(image.src, {
             method : 'GET',
-            headers : {
-                'Access-Control-Allow-Origin':'*'
-            },
+            headers : {},
             mode : 'cors',
             cache : 'default'
         })
@@ -65,9 +63,6 @@ const Attempt = {
 
         return res
     },
-    async 3(image : HTMLImageElement) {
-       //window.open(image.src, 'console', 'location=1, toolbar=1, menubar=1, resizable=1, width=464, height=700')
-    }
 }
 
 const Fetch = async (image : HTMLImageElement) => {

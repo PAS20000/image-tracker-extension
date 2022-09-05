@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { FaArrowLeft, FaArrowRight, FaMoon, FaSun, FaTools, FaUser } from 'react-icons/fa'
 import { IoMdCart } from 'react-icons/io'
+import { MdZoomOutMap } from 'react-icons/md'
 import usePortalCTX from '../../../Contexts/PortalContext/usePortalCTX'
 import { Container } from './index.styles'
 import { useTheme } from 'styled-components'
@@ -35,6 +36,9 @@ const Footer = () => {
                 </Button>
                 <Button title='Shop' onClick={() => setIsOpen({ ...isOpen, shop : true })} color={color.red}>
                    <IoMdCart />
+                </Button>
+                <Button title='FullScreen' color={color.cyan} onClick={() => window.open('/popup.html')}>
+                    <MdZoomOutMap />
                 </Button>
                 <Button title='Tools' onClick={() => setIsOpen({ ...isOpen, tools : true })} color={color.green}>
                     <FaTools />
