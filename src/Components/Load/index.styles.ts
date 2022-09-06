@@ -10,7 +10,7 @@ const Loading = styled.div`
             transform: rotate(360deg);
         }
     }
-    transform: translate(95vh, 30vh);
+    transform: translate(40vh, 30vh);
     position: absolute;
     img {
         animation: Rotate 1s ease-in infinite;
@@ -20,8 +20,8 @@ const Loading = styled.div`
         color: ${props => props.theme.color.icon};
     }
 
-    @media (max-width:${BreakPoints.width[0]}) {
-        transform: translate(40vh, 30vh);
+    @media (min-width:${BreakPoints.width[1]}) {
+        transform: translate(90vh, 30vh);
     }
 `
 

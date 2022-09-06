@@ -649,7 +649,7 @@ const Loading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div `
             transform: rotate(360deg);
         }
     }
-    transform: translate(95vh, 30vh);
+    transform: translate(40vh, 30vh);
     position: absolute;
     img {
         animation: Rotate 1s ease-in infinite;
@@ -659,8 +659,8 @@ const Loading = styled_components__WEBPACK_IMPORTED_MODULE_1__["default"].div `
         color: ${props => props.theme.color.icon};
     }
 
-    @media (max-width:${_Styles_BreakPoints__WEBPACK_IMPORTED_MODULE_0__["default"].width[0]}) {
-        transform: translate(40vh, 30vh);
+    @media (min-width:${_Styles_BreakPoints__WEBPACK_IMPORTED_MODULE_0__["default"].width[1]}) {
+        transform: translate(90vh, 30vh);
     }
 `;
 
