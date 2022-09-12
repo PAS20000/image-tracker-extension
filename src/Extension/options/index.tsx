@@ -1,13 +1,27 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom/client'
+import styled from 'styled-components'
+
+const Rotate = styled.img`
+    @keyframes Rotate {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
+    animation: 0.5s Rotate infinite;
+    width: 256px;
+    height: 256px;
+`
 
 const Options = () => {
 
     return (
        <React.StrictMode>
             <div>
-                <h1>Options</h1>
-                <img src="logo-vermelho.png" alt="" />
+                <Rotate src="logo-vermelho.png" alt="" />
             </div>
        </React.StrictMode>
     )

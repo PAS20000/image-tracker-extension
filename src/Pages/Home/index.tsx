@@ -8,13 +8,11 @@ import Footer from '../../Components/Nav/Footer'
 import Title from '../../Components/Title'
 import useAuthCTX from '../../Contexts/AuthContext/useAuthCTX'
 import useLiveStorageCTX from '../../Contexts/LiveStorageContext/useLiveStorageCTX'
-import usePortalCTX from '../../Contexts/PortalContext/usePortalCTX'
 import useHowLogo from '../../Hooks/useHowLogo'
 
 const Home = () => {
-    const { setIsOpen } = usePortalCTX()
     const { IsFallBack, PaginationImages } = useLiveStorageCTX()
-    const { member, isAuth } = useAuthCTX()
+    const { isAuth } = useAuthCTX()
     const HowLogo = useHowLogo()
     const Goto = useNavigate()
 
@@ -23,17 +21,6 @@ const Home = () => {
           Goto('/')
       }
     }, [isAuth])
-
-    React.useEffect(() => {
-      if (member?.signature === 'free' && !IsFallBack.Storage) {
-        setIsOpen(current => {
-          return {
-            ...current,
-            shop : true
-          }
-        })
-      }
-    },[setIsOpen, member])
       
     if (IsFallBack.Storage) {
       return <Load />

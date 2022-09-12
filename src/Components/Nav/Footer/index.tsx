@@ -8,21 +8,19 @@ import Button from '../../Button'
 import useCustomThemeCTX from '../../../Contexts/CustomThemeContext/useCustomThemeCTX'
 import ToolModal from './ToolModal'
 import Flex from '../../Layout/Flex'
-import ShopModal from './ShopModal'
 import ProfileModal from './ProfileModal'
 import useLiveStorageCTX from '../../../Contexts/LiveStorageContext/useLiveStorageCTX'
+import useWindow from '../../../Hooks/useWindow'
 
 const Footer = () => {
     const { right, left } = useLiveStorageCTX()
     const { isOpen, setIsOpen } = usePortalCTX()
     const { color, title } = useTheme()
     const { ChangeTheme } = useCustomThemeCTX()
+    const { WindowConfig } = useWindow()
 
     return(
         <Container>
-            {isOpen.shop &&  
-                <ShopModal />
-            }
             {isOpen.tools &&
                 <ToolModal />
             }
@@ -33,7 +31,9 @@ const Footer = () => {
                 <Button title='Back' color={color.green} onClick={left}>
                     <FaArrowLeft />
                 </Button>
-                <Button title='Shop' onClick={() => setIsOpen({ ...isOpen, shop : true })} color={color.red}>
+                <Button title='Shop' onClick={() => {
+                    window.open('https://imagetracker.org/signatures', 'Shop', WindowConfig)
+                }} color={color.red}>
                    <IoMdCart />
                 </Button>
                 <Button title='Tools' onClick={() => setIsOpen({ ...isOpen, tools : true })} color={color.green}>

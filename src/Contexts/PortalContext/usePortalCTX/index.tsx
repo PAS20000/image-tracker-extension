@@ -10,7 +10,6 @@ const usePortalCTX = () => {
         closeAll(){
             setIsOpen({
                 tools : false,
-                shop : false,
                 profile : false
             })
         }

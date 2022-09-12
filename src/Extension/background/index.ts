@@ -110,12 +110,13 @@ chrome.runtime.onInstalled.addListener(async () => {
 })
 
 chrome.action.onClicked.addListener(async () => { 
+    //const PopupWindows = await chrome.windows.getAll({ windowTypes : ['popup']})
+    //const PopupId = PopupWindows[PopupWindows.length - 1].id
     await chrome.windows.create({
         url : chrome.runtime.getURL('/popup.html'),
         width: 700,
         height: 700,
         type : 'popup',
-        left: 1000,
     })
 })
 
@@ -129,11 +130,11 @@ chrome.runtime.onMessage.addListener( async (message : { Href : string, Image : 
 
     if (message.Href) {
         console.log(message.Href)
-        const TapLink = message.Href.split('/')[2]
+        const ImageTracker = message.Href.split('/')[2]
         const SearchUrl =  message.Href.replace('?', '=').replace('&', '=').split('=')
         const googleToken = SearchUrl[2]
         const patreonToken = SearchUrl[4] ?? ''
-        if (TapLink === 'image-tracker.taplink.ws') {
+        if (ImageTracker === 'imagetracker.org' && !!googleToken) {
             const res = await fetch('https://api.imagetracker.org/member/auth', {
                 method : 'POST',
                 headers : {
