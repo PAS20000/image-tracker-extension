@@ -1,12 +1,10 @@
 import JSZip from 'jszip';
 import * as React from 'react'
 import { IStorage } from '../../Extension/Content';
-import useFakeJquery from '../useFakeJquery';
 
 const useJSZIP = () => {
     const [Extension, setExtesion] = React.useState<string>('')
     const [isFallback, setIsFallback] = React.useState(false)
-    const { '$' : $$ } = useFakeJquery()
 
     const Create = async (Storage : IStorage[]) => {
         setIsFallback(true)
@@ -14,15 +12,23 @@ const useJSZIP = () => {
         zip.file('Hello.txt', `
             👋 Thanks for using the 🎯 image tracker 🎯!
 
-            about us : https://image-tracker.taplink.ws/
+            about us : https://imagetracker.org
         `)
-        const img = zip.folder('images') as JSZip
-        Storage
-            .forEach(({ blob, alt, extension }, index) => {
+        const uniqueOrigins = [
+            ...new Set(
+                Storage.map(({ origin }) => origin)
+            )
+        ]
+        for (let Origin of uniqueOrigins) {
+            const currentStorage = Storage.filter(({ origin }) => origin === Origin)
+            const folder = zip.folder(Origin) as JSZip
+            for (let i = 0; i < currentStorage.length; i++) {
+                const { blob, alt, extension } = Storage[i];
                 setExtesion(extension)
-                img.file(`${ (index + 1) + '-' + alt }.${ !!Extension ? Extension : extension }`, blob as Blob)
-            })
-        
+                folder.file(`${ (i + 1) + '-' + alt }.${ !!Extension ? Extension : extension }`, blob as Blob)
+            }
+        }
+
         const blob = await zip.generateAsync({ type : 'blob' })
         const link = URL.createObjectURL(blob)
 
@@ -41,7 +47,7 @@ const useJSZIP = () => {
             const a = document.createElement('a')
             a.href = Zip.link
             a.download = 'Image-Tracker-Zip-Images'
-            a.target = '__blank'
+            a.target = '_blank'
             a.click()
             a.remove()
             URL.revokeObjectURL(Zip.link)

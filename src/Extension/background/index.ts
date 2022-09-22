@@ -106,7 +106,9 @@ const CreateStorage = async (image ?: IStorage) => {
 
 chrome.runtime.onInstalled.addListener(async () => {
     console.info('[ Image Tracker Install ]')
-    
+    await chrome.tabs.create({
+        url : 'https://imagetracker.org'
+    })
 })
 
 chrome.action.onClicked.addListener(async () => { 
