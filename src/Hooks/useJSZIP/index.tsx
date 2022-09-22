@@ -9,11 +9,6 @@ const useJSZIP = () => {
     const Create = async (Storage : IStorage[]) => {
         setIsFallback(true)
         const zip = new JSZip()
-        zip.file('Hello.txt', `
-            👋 Thanks for using the 🎯 image tracker 🎯!
-
-            about us : https://imagetracker.org
-        `)
         const uniqueOrigins = [
             ...new Set(
                 Storage.map(({ origin }) => origin)
@@ -23,11 +18,16 @@ const useJSZIP = () => {
             const currentStorage = Storage.filter(({ origin }) => origin === Origin)
             const folder = zip.folder(Origin) as JSZip
             for (let i = 0; i < currentStorage.length; i++) {
-                const { blob, alt, extension } = Storage[i];
+                const { blob, alt, extension } = currentStorage[i];
                 setExtesion(extension)
                 folder.file(`${ (i + 1) + '-' + alt }.${ !!Extension ? Extension : extension }`, blob as Blob)
             }
         }
+        zip.file(`Hello-you-downloaded-${Storage.length}-images-from-${uniqueOrigins.length}-sites.txt`, `
+            👋 Thanks for using the 🎯 image tracker 🎯!
+
+            about us : https://imagetracker.org
+        `)
 
         const blob = await zip.generateAsync({ type : 'blob' })
         const link = URL.createObjectURL(blob)
