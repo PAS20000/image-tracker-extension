@@ -1,43 +1,8 @@
 import { IStorage } from "../Content"
 
-const TrackerConsole = () => {
-    document.images[0].remove()
-    const body = document.body
-    body.className = 'Body'
-    const div = document.createElement('div')
-    div.className = 'Console Container'
-    const code = document.createElement('code')
-    code.className = 'Console Log'
-    const label = document.createElement('label')
-    label.className = 'Console Status'
-    const ImageTrackerLogo = document.createElement('img')
-    ImageTrackerLogo.className = 'Image Tracker Logo'
-    ImageTrackerLogo.src = 'img/logo.png'
-    const TargetLogo = document.createElement('img')
-    TargetLogo.className = 'Target Logo'
-    const TargetImage = document.createElement('img')
-    TargetImage.className = 'Target Image'
-
-    const InjectDom = (Target : HTMLElement, Array : HTMLElement[]) => {
-        Array
-            .forEach(el => Target.append(el))
-    }
-
-    InjectDom(div, [
-        code,
-        label,
-        ImageTrackerLogo,
-        TargetLogo,
-        TargetImage
-    ])
-
-    InjectDom(body, [div])
-}
-
-
 let db : IDBDatabase
 const dbName = 'Image_Tracker_DB'
-const Images = 'Images'
+const TableName = 'Images'
 
 const error = async (error : string) => {
     throw new Error(error)
@@ -61,8 +26,8 @@ const NewStorage = async (image : IStorage) => {
 }
 
 const addData = (image ?: IStorage) => {
-    const transaction = db.transaction([Images], 'readwrite')
-    const imageStore = transaction.objectStore(Images)
+    const transaction = db.transaction([TableName], 'readwrite')
+    const imageStore = transaction.objectStore(TableName)
 
     imageStore.add(image)
 
@@ -86,7 +51,7 @@ const CreateStorage = async (image ?: IStorage) => {
         request.onupgradeneeded = () => {
             const db = request.result
             const uniqueFalse = { unique : false }
-            const imageStore = db.createObjectStore(Images, { keyPath : 'id' })
+            const imageStore = db.createObjectStore(TableName, { keyPath : 'id' })
             imageStore.createIndex('origin', 'origin', uniqueFalse)
             imageStore.createIndex('alt', 'alt', uniqueFalse)
             imageStore.createIndex('size', 'size', uniqueFalse)
@@ -104,22 +69,63 @@ const CreateStorage = async (image ?: IStorage) => {
     }
 }
 
+const WindowPopup = async (url : string) => {
+    return await chrome.windows.create({
+        url : url,
+        width: 700,
+        height: 700,
+        type : 'popup',
+    })
+}
+
 chrome.runtime.onInstalled.addListener(async () => {
     console.info('[ Image Tracker Install ]')
+    const isChrome = navigator.userAgent.indexOf('Chrome') !== -1
     await chrome.tabs.create({
         url : 'https://imagetracker.org'
     })
+    if (isChrome) {
+        await chrome.tabs.create({
+            url : 'chrome://flags/#smooth-scrolling'
+        })
+        const Window = await WindowPopup('https://imagetracker.org/media/desktop/scroll-smooth-error-google-chrome-09-17-2022.webp')
+        await chrome.scripting.executeScript({
+            target : {
+                tabId : Window.tabs[0].id
+            },
+            func : () => {
+               const body = document.body
+               const div = document.createElement('div')
+               const title = document.createElement('h1')
+               const describe = document.createElement('p')
+               div.style.padding = '15px'
+               div.style.margin = '10px 0px'
+               div.style.background = '#181818'
+               div.style.fontFamily = 'sans-serif'
+               div.style.width = '100%'
+               div.style.textAlign = 'center'
+               div.style.borderRadius = '8px'
+               title.style.margin = '5px'
+               title.style.padding = '5px'
+               title.innerText = 'Google chrome browser detected error'
+               title.style.color = '#f55'
+               describe.style.color = '#fff'
+               describe.style.fontSize = '1.3rem'
+               describe.innerHTML = 'The extension has a functionality that requires you to enable <strong>Smooth Scrolling</strong>, follow the steps shown below.'
+               div.append(title)
+               div.append(describe)
+               body.prepend(div)
+            }
+        })
+    }
 })
 
 chrome.action.onClicked.addListener(async () => { 
     //const PopupWindows = await chrome.windows.getAll({ windowTypes : ['popup']})
     //const PopupId = PopupWindows[PopupWindows.length - 1].id
-    await chrome.windows.create({
-        url : chrome.runtime.getURL('/popup.html'),
-        width: 700,
-        height: 700,
-        type : 'popup',
-    })
+    await WindowPopup(
+        chrome.runtime.getURL('/popup.html')
+    )
 })
 
 chrome.runtime.onMessage.addListener( async (message : { Href : string, Image : IStorage }) => {
