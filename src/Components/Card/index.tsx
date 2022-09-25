@@ -76,7 +76,7 @@ const Card = ({
             </Box>
             <Tools 
                 href={src}
-                download={src}
+                download={alt}
                 id={id}
             />
         </Container>
