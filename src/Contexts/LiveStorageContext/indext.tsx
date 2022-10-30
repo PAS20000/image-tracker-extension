@@ -49,7 +49,7 @@ const LiveStorageProvider = ({
 } : PropsCTXdefault) => {
     const CarouselRef = React.useRef<HTMLDivElement>(null) 
     const [FilterOptions, setFilterOptions] = React.useState<string[]>([])
-    const [CurrentFilters, setCurrentFilters] = React.useState<string[]>(JSON.parse(localStorage.CurrentFilters ?? '[]'))
+    const [CurrentFilters, setCurrentFilters] = React.useState<string[]>([])
     const [pagination, setPagination] = React.useState([0, 20])
 
     const { member } = useAuthCTX()

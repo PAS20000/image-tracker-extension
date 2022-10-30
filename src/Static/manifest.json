@@ -19,13 +19,13 @@
   "author":"Pedro Augusto Schroeder",
   "action" : {
       "default_title": "Image Tracker",
-      "default_icon": "logo-vermelho.png"
+      "default_icon": "image-tracker-logo-orichalcum-09-10-2022.png"
   },
   "options_page": "options.html",
   "icons": {
-    "16": "logo-vermelho.png",
-    "48": "logo-vermelho.png",
-    "128": "logo-vermelho.png"
+    "16": "image-tracker-logo-orichalcum-09-10-2022.png",
+    "48": "image-tracker-logo-orichalcum-09-10-2022.png",
+    "128": "image-tracker-logo-orichalcum-09-10-2022.png"
   },
   "background": {
     "service_worker": "background.js",

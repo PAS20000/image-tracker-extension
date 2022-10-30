@@ -74,6 +74,8 @@ const WindowPopup = async (url : string) => {
         url : url,
         width: 700,
         height: 700,
+        left : 1000,
+        top : 0,
         type : 'popup',
     })
 }

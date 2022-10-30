@@ -21,7 +21,8 @@ const Tools = ({
 
     return(
         <Container>
-            <Link href={`#${href}`} target='_self' title='Open Image in new window' onClick={() => window.open(href, 'open image', WindowConfig)}>
+            <Link href={`#${href}`} target='_self' title='Open Image in new window' onClick={() => 
+                window.open(href, 'open image', WindowConfig)}>
                 <BsFillEyeFill />
             </Link>
             <Link href={href} target='_blank' download={download} title='download Image'>

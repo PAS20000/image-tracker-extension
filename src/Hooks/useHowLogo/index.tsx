@@ -5,16 +5,19 @@ const useHowLogo = () => {
 
     const verifyLogo = () => {
         if (member?.signature === 'free') {
-          return 'logo-vermelho.png'
+          return 'image-tracker-logo-free-09-10-2022.png'
         }
         if (member?.signature === 'gold') {
-          return 'logo-gold.png'
+          return 'image-tracker-logo-gold-09-10-2022.png'
         }
         if (member?.signature === 'platinum') {
           return 'logo-verde.png'
         }
         if (member?.signature === 'diamond' || member?.signature === 'beta tester') {
-          return 'logo-diamond.png'
+          return 'image-tracker-logo-diamond-09-10-2022.png'
+        }
+        if (member?.signature === 'orichalcum') {
+          return 'image-tracker-logo-orichalcum-09-10-2022.png'
         }
       }
 
