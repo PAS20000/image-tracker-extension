@@ -39,7 +39,7 @@ const Home = () => {
             :
             <Alert 
               title='There are no images to show'
-              describe='Scroll down to get the photos from the website '
+              describe='Scroll down to get the photos from the website'
             />
           }
         </Carousel>

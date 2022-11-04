@@ -20,7 +20,7 @@ const Container = styled.button<Props>`
     border:none;
     width:45px;
     height:45px;
-    font-size:26px;
+    font-size: 1.8rem;
     box-shadow:${props => props.theme.utils.boxShadow};
     border-radius:50%;
     cursor:pointer;
@@ -41,7 +41,7 @@ const Container = styled.button<Props>`
     @media(max-width:${BreakPoints.width[0]}){
         width:42px;
         height:42px;
-        font-size:25.5px;
+        font-size : 1.5rem;
     }
 `
 

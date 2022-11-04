@@ -34,7 +34,7 @@ const CustomThemeProvider = ({
     }
 
     React.useEffect(() => {
-        setTheme(localStorage.themeImageTracker === 'dark' ? Dark : Light)
+        setTheme(localStorage.themeImageTracker === 'light' ? Light : Dark)
     }, [])
    
    return(

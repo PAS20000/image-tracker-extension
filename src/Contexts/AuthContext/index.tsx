@@ -2,45 +2,36 @@ import * as React from 'react'
 import Api from '../../Tools/Api'
 import { PropsCTXdefault } from '../types'
 
-export type PatreonInfo = {
-    _id ?: string
-    first_name ?: string
-    last_name ?: string
-    full_name ?: string
-    vanity ?: string
-    email ?: string
-    about ?: string
-    facebook_id ?: string
-    image_url ?: string
-    thumb_url ?: string
-    youtube ?: string
-    twitter ?: string
-    facebook ?: string
-    created ?: Date
-    url ?: string
-    like_count ?: number
-    comment_count ?: number
-    campaign ?: {}
-}
+export type Partner = [
+    'partner'
+][number]
 
 export type Signature = [
     'free',
     'gold',
     'platinum',
     'diamond',
-    'beta tester'
+    'beta-tester',
+    'orichalcum',
+    `promo-${Partner}`
 ][number]
 
 export interface IMember {
-    Google_id ?: string
-    avatar ?: string | null
-    name ?: string
-    email ?: string
-    signature ?: Signature
-    locale ?: string
-    gender ?: string
-    patreon ?: PatreonInfo
-    createdAt ?: Date  
+    id : string
+    email : string
+    avatar : string
+    password : string
+    name : string
+    nickname : string
+    signature : Signature
+    secrets : string[]
+    verified : {
+        email : boolean
+    }
+    createdAt : Date
+    updatedAt : Date
+    access_token : string
+    refresh_token : string
 }
 
 export type AuthContextReturn = {
@@ -54,7 +45,8 @@ const AuthProvider = ({
     children
 } : PropsCTXdefault) => {
    const [member, setMember] = React.useState<IMember>()
-   const isAuth = !!member?.Google_id
+   const isAuth = !!member?.id
+
    const Auth = () => {
         chrome.storage.sync.get(null, async ({ token }) => {
             if (!!token) {
@@ -77,8 +69,27 @@ const AuthProvider = ({
     }
 
     React.useEffect(() => {
-        Auth()
-        setMember({ Google_id : '1', signature : 'diamond', name : 'fake' })
+        chrome.storage.sync.get(null, async ({ token }) => {
+            if (!!token) {
+                setMember({
+                    id : '1',
+                    name : 'PAS',
+                    access_token : '',
+                    avatar : '',
+                    createdAt : new Date(),
+                    email : '',
+                    nickname : '',
+                    refresh_token : '',
+                    secrets : [''],
+                    signature : 'orichalcum',
+                    password : '',
+                    updatedAt : new Date(),
+                    verified : {
+                        email : true
+                    }
+                })
+            }
+        })
     }, [])
 
    return(

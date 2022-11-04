@@ -77,60 +77,128 @@ const WindowPopup = async (url : string) => {
         left : 1000,
         top : 0,
         type : 'popup',
+        focused : true
     })
 }
 
 chrome.runtime.onInstalled.addListener(async () => {
     console.info('[ Image Tracker Install ]')
-    const isChrome = navigator.userAgent.indexOf('Chrome') !== -1
-    await chrome.tabs.create({
-        url : 'https://imagetracker.org'
-    })
-    if (isChrome) {
-        await chrome.tabs.create({
-            url : 'chrome://flags/#smooth-scrolling'
-        })
-        const Window = await WindowPopup('https://imagetracker.org/media/desktop/scroll-smooth-error-google-chrome-09-17-2022.webp')
-        await chrome.scripting.executeScript({
-            target : {
-                tabId : Window.tabs[0].id
-            },
-            func : () => {
-               const body = document.body
-               const div = document.createElement('div')
-               const title = document.createElement('h1')
-               const describe = document.createElement('p')
-               div.style.padding = '15px'
-               div.style.margin = '10px 0px'
-               div.style.background = '#181818'
-               div.style.fontFamily = 'sans-serif'
-               div.style.width = '100%'
-               div.style.textAlign = 'center'
-               div.style.borderRadius = '8px'
-               title.style.margin = '5px'
-               title.style.padding = '5px'
-               title.innerText = 'Google chrome browser detected error'
-               title.style.color = '#f55'
-               describe.style.color = '#fff'
-               describe.style.fontSize = '1.3rem'
-               describe.innerHTML = 'The extension has a functionality that requires you to enable <strong>Smooth Scrolling</strong>, follow the steps shown below.'
-               div.append(title)
-               div.append(describe)
-               body.prepend(div)
+    
+    chrome.storage.sync.get(null, async ({ notifications }) => {
+        if (!notifications) {
+            const isChrome = navigator.userAgent.indexOf('Chrome') !== -1
+            if (isChrome) {
+                chrome.notifications.create({
+                    message : `we have detected an error that may cause problems with our extension in google chrome, please follow the steps.`,
+                    title : 'Image Tracker was detected error',
+                    type : 'image',
+                    iconUrl : '/image-tracker-logo-orichalcum-09-10-2022.png',
+                    imageUrl : 'https://imagetracker.org/media/desktop/scroll-smooth-error-google-chrome-09-17-2022.webp',
+                    buttons : [
+                        {
+                            title : 'Go to steps'
+                        },
+                        {
+                            title : 'Maybe later'
+                        }
+                    ],
+                    isClickable : true,
+                    requireInteraction : true
+               }, (myNotificationID) => {
+                    chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
+                        if (notifId === myNotificationID) {
+                            if (btnIdx === 0) {
+                                await chrome.tabs.create({
+                                    url : 'chrome://flags/#smooth-scrolling'
+                                })
+                                await chrome.tabs.create({
+                                    url : 'https://imagetracker.org/support'
+                                })
+                            } else {}
+                        }
+                    });
+               })
+            } else {
+                chrome.notifications.create({
+                    message : `Welcome to the best image downloader, don't forget to check our goals to make an even more interesting project for you 💜.`,
+                    title : 'Image Tracker was successfully installed',
+                    type : 'basic',
+                    iconUrl : '/image-tracker-logo-orichalcum-09-10-2022.png',
+                    buttons : [
+                        {
+                            title : 'Check goals'
+                        },
+                        {
+                            title : 'Maybe later'
+                        }
+                    ],
+                    isClickable : true,
+                    requireInteraction : true
+               }, (myNotificationID) => {
+                    chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
+                        if (notifId === myNotificationID) {
+                            if (btnIdx === 0) {
+                                await chrome.tabs.create({
+                                    url : 'https://imagetracker.org/about'
+                                })
+                            } else {}
+                        }
+                    });
+               })
             }
-        })
-    }
+        }
+    })
+    
+    await chrome.storage.sync.set({ notifications : true }) 
 })
 
 chrome.action.onClicked.addListener(async () => { 
-    //const PopupWindows = await chrome.windows.getAll({ windowTypes : ['popup']})
-    //const PopupId = PopupWindows[PopupWindows.length - 1].id
-    await WindowPopup(
-        chrome.runtime.getURL('/popup.html')
-    )
+    const tabs = await chrome.tabs.query({ 
+        url : chrome.runtime.getURL('/popup.html') 
+    })
+    const extensionIsOpen = tabs[0]
+    
+    if (!!extensionIsOpen) {
+        console.log(extensionIsOpen)
+        chrome.notifications.create({
+            message : 'There is already an extension window open, do you want to open another one?',
+            title : 'Image Tracker',
+            type : 'basic',
+            iconUrl : '/image-tracker-logo-orichalcum-09-10-2022.png',
+            buttons : [
+                {
+                    title : 'Yes'
+                },
+                {
+                    title : 'No'
+                }
+            ],
+            requireInteraction : true,
+            isClickable : true,
+       }, (myNotificationID) => {
+            chrome.notifications.onButtonClicked.addListener(async (notifId, btnIdx) => {
+                if (notifId === myNotificationID) {
+                    if (btnIdx === 0) {
+                        await WindowPopup(
+                            chrome.runtime.getURL('/popup.html')
+                        )
+                    } else {}
+                }
+            });
+       })
+    } else {
+        await WindowPopup(
+            chrome.runtime.getURL('/popup.html')
+        )
+    } 
 })
 
-chrome.runtime.onMessage.addListener( async (message : { Href : string, Image : IStorage }) => {
+chrome.runtime.onMessage.addListener( async (message : { 
+    host : { 
+        href : string
+    }, 
+    Image : IStorage 
+}) => {
     if (message.Image) {
         const Image = message.Image
         if (isHtml(Image.base64 as string)) return
@@ -138,32 +206,23 @@ chrome.runtime.onMessage.addListener( async (message : { Href : string, Image : 
         CreateStorage(newImage)
     }
 
-    if (message.Href) {
-        console.log(message.Href)
-        const ImageTracker = message.Href.split('/')[2]
-        const SearchUrl =  message.Href.replace('?', '=').replace('&', '=').split('=')
-        const googleToken = SearchUrl[2]
-        const patreonToken = SearchUrl[4] ?? ''
-        if (ImageTracker === 'imagetracker.org' && !!googleToken) {
-            const res = await fetch('https://api.imagetracker.org/member/auth', {
-                method : 'POST',
-                headers : {
-                    "Authorization" : googleToken
-                },
-                body : JSON.stringify({ patreonToken }),
-                mode : 'cors'
-            })
-            const { token } = await res.json()
-
+    if (!!message.host?.href) {
+        const ImageTrackerUrl = new URL(message.host.href)
+        const params = new URLSearchParams(ImageTrackerUrl.search)
+        const token = params.get('token')
+        if (token) {
             await chrome.storage.sync.remove(['token']).catch((e) => {
                 error(`chrome storage sync clear error ${e}`)
             })
             await chrome.storage.sync.set({ token }).catch((e) => {
                 error(`chrome storage sync set error ${e}`)
             })
-            if (chrome.runtime.id) {
-                chrome.runtime.reload()
-            }
+
+            await chrome.windows.remove(chrome.windows.WINDOW_ID_CURRENT)
+
+            await WindowPopup(
+                chrome.runtime.getURL('/popup.html')
+            )
         }
     }
 })

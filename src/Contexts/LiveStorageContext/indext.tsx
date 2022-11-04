@@ -114,7 +114,7 @@ const LiveStorageProvider = ({
             free : 200
         }
 
-        if (member.signature === 'beta tester' || member.signature === 'diamond' || isPromo()) {
+        if (member.signature === 'beta-tester' || member.signature === 'diamond' || isPromo()) {
             return images
         }
 

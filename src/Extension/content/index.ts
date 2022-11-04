@@ -23,6 +23,13 @@ export interface IStorage {
     src : string
 }
 
+const Hosts = [
+    'imagetracker.org',
+    'localhost:3000'
+]
+
+const MyHosts = Hosts.filter(url => window.location.host === url)[0]
+
 const GetExtension = (src : string) => {
     const ArraySrc = src.replaceAll('.', '/').replaceAll('?', '/').split('/')
     const Exist = (extensions : Extension[]) : Extension => {
@@ -148,13 +155,15 @@ const Data = () => {
 }
 
 const GetImages = async () => {
-    const Images = await Data()
-    if (Images.length) {
-       for (let i in Images) {
-            await chrome.runtime.sendMessage({
-                Image : Images[i]
-            })
-       }
+    if (!MyHosts) {
+        const Images = await Data()
+        if (Images.length) {
+           for (let i in Images) {
+                await chrome.runtime.sendMessage({
+                    Image : Images[i]
+                })
+           }
+        }
     }
 }
 
@@ -173,5 +182,7 @@ if (!!ExtensionIsOpen) {
 }
 
 chrome.runtime.sendMessage({
-    Href : window.location.href
+    host : {
+        href : MyHosts ? window.location.href : ''
+    }
 })

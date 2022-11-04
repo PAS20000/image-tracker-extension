@@ -16,7 +16,8 @@ const Loading = styled.div`
         animation: Rotate 1s ease-in infinite;
     }
     h2 {
-        margin: 20px 0px 0px 10px;
+        margin-top: 15px;
+        text-align: center;
         color: ${props => props.theme.color.icon};
     }
 

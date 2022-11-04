@@ -1,10 +1,5 @@
 import * as React from 'react'
 
-type Props = {
-    href : string
-    title : string
-}
-
 const useWindow = () => {
     const [WindowConfig, setWindowConfig] = React.useState<string>()
     

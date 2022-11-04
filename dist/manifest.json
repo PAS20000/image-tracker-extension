@@ -6,7 +6,7 @@
     "storage",
     "unlimitedStorage",
     "tabs",
-    "scripting",
+    "notifications",
     "activeTab"
   ],
   "file_system_provider_capabilities": {
@@ -16,7 +16,7 @@
     "source": "network"
   },
   "description":"Download images from instagram or from any other site" ,
-  "author":"Pedro Augusto Schroeder",
+  "author":"Pedro Augusto Schroeder (PAS)",
   "action" : {
       "default_title": "Image Tracker",
       "default_icon": "image-tracker-logo-orichalcum-09-10-2022.png"

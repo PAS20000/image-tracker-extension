@@ -24,9 +24,10 @@ const useJSZIP = () => {
             }
         }
         zip.file(`Hello-you-downloaded-${Storage.length}-images-from-${uniqueOrigins.length}-sites.txt`, `
+            You downloaded ${Storage.length} images from ${uniqueOrigins.length} sites
             👋 Thanks for using the 🎯 image tracker 🎯!
-
-            about us : https://imagetracker.org
+            join our discord server : https://discord.com/invite/2kyjbbjBwe
+            website : https://imagetracker.org
         `)
 
         const blob = await zip.generateAsync({ type : 'blob' })
